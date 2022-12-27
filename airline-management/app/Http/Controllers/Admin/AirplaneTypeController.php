@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\AirplaneType;
 use Illuminate\Support\Facades\DB;
 
-class AirplaneTypeTypeController extends Controller
+class AirplaneTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,10 @@ class AirplaneTypeTypeController extends Controller
     {
         //
         $airplanetype=AirplaneType::all();
-        return json_encode($airplanetype);
+        // return json_encode($airplanetype);
+        return response()->json([
+            'airplanetype'=>$airplanetype
+        ]);
     }
 
     /**
@@ -43,7 +46,10 @@ class AirplaneTypeTypeController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -66,6 +72,12 @@ class AirplaneTypeTypeController extends Controller
     public function show($id)
     {
         //
+        $airplanetype=AirplaneType::where('type_id',$id)->first();
+        // return json_encode($airplanetype);
+        return response()->json([
+            'airplanetype'=>$airplanetype
+        ]);
+        
     }
 
     /**
@@ -77,7 +89,10 @@ class AirplaneTypeTypeController extends Controller
     public function edit($id)
     {
         $airplanetype=AirplaneType::where('type_id',$id)->first();
-        return json_encode($airplanetype);
+        // return json_encode($airplanetype);
+        return response()->json([
+            'airplanetype'=>$airplanetype
+        ]);
     }
 
     /**
@@ -107,7 +122,11 @@ class AirplaneTypeTypeController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($airplanetype,$resp);
+        //  return json_encode($airplanetype,$resp);
+         return response()->json([
+            'airplanetype'=>$airplanetype,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -132,7 +151,11 @@ class AirplaneTypeTypeController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($airplanetype,$resp);
+        //  return json_encode($airplanetype,$resp);
+         return response()->json([
+            'airplanetype'=>$airplanetype,
+            'message'=>$resp
+        ]);
     }
   
 }

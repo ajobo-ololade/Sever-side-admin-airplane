@@ -18,7 +18,10 @@ class AirplaneController extends Controller
     {
         //
         $airplane=Airplane::all();
-        return json_encode($airplane);
+        // return json_encode($airplane);
+        return response()->json([
+            'airplane'=>$airplane
+        ]);
     }
 
     /**
@@ -45,7 +48,10 @@ class AirplaneController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -68,6 +74,11 @@ class AirplaneController extends Controller
     public function show($id)
     {
         //
+        $airplane=Airplane::where('numser',$id)->first();
+        // return json_encode($airplane);
+        return response()->json([
+            'airplane'=>$airplane
+        ]);
     }
 
     /**
@@ -79,7 +90,10 @@ class AirplaneController extends Controller
     public function edit($id)
     {
         $airplane=Airplane::where('numser',$id)->first();
-        return json_encode($airplane);
+        // return json_encode($airplane);
+        return response()->json([
+            'airplane'=>$airplane
+        ]);
     }
 
     /**
@@ -111,7 +125,11 @@ class AirplaneController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($airplane,$resp);
+        //  return json_encode($airplane,$resp);
+         return response()->json([
+            'airplane'=>$airplane,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -136,6 +154,10 @@ class AirplaneController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($airplane,$resp);
+        //  return json_encode($airplane,$resp);
+         return response()->json([
+            'airplane'=>$airplane,
+            'message'=>$resp
+        ]);
     }
 }

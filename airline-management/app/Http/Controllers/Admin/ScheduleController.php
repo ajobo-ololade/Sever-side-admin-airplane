@@ -17,7 +17,10 @@ class ScheduleController extends Controller
     {
         //
         $schedule=Schedule::all();
-        return json_encode($schedule);
+        // return json_encode($schedule);
+        return response()->json([
+            'schedule'=>$schedule
+        ]);
     }
 
     /**
@@ -48,7 +51,10 @@ class ScheduleController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -71,6 +77,11 @@ class ScheduleController extends Controller
     public function show($id)
     {
         //
+        $schedule=Schedule::where('schedulenum',$id)->first();
+        // return json_encode($schedule);
+        return response()->json([
+            'schedule'=>$schedule
+        ]);
     }
 
     /**
@@ -82,7 +93,10 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         $schedule=Schedule::where('schedulenum',$id)->first();
-        return json_encode($schedule);
+        // return json_encode($schedule);
+        return response()->json([
+            'schedule'=>$schedule
+        ]);
     }
 
     /**
@@ -118,7 +132,11 @@ class ScheduleController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($schedule,$resp);
+        //  return json_encode($schedule,$resp);
+        return response()->json([
+            'schedule'=>$schedule,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -143,6 +161,10 @@ class ScheduleController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($schedule,$resp);
+        //  return json_encode($schedule,$resp);
+        return response()->json([
+            'schedule'=>$schedule,
+            'message'=>$resp
+        ]);
     }
 }

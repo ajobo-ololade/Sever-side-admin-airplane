@@ -18,7 +18,10 @@ class CrewController extends Controller
     {
         //
         $crew=Crew::all();
-        return json_encode($crew);
+        // return json_encode($crew);
+        return response()->json([
+            'crew'=>$crew
+        ]);
     }
 
     /**
@@ -45,7 +48,10 @@ class CrewController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -68,6 +74,11 @@ class CrewController extends Controller
     public function show($id)
     {
         //
+        $crew=Crew::where('crewid',$id)->first();
+        // return json_encode($crew);
+        return response()->json([
+            'crew'=>$crew
+        ]);
     }
 
     /**
@@ -79,7 +90,10 @@ class CrewController extends Controller
     public function edit($id)
     {
         $crew=Crew::where('crewid',$id)->first();
-        return json_encode($crew);
+        // return json_encode($crew);
+        return response()->json([
+            'crew'=>$crew
+        ]);
     }
 
     /**
@@ -111,7 +125,11 @@ class CrewController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($crew,$resp);
+        //  return json_encode($crew,$resp);
+        return response()->json([
+            'crew'=>$crew,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -136,6 +154,10 @@ class CrewController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($crew,$resp);
+        //  return json_encode($crew,$resp);
+        return response()->json([
+            'crew'=>$crew,
+            'message'=>$resp
+        ]);
     }
 }

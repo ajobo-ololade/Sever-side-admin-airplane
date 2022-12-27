@@ -18,7 +18,11 @@ class PassengerController extends Controller
     {
         //
         $passenger=Passenger::all();
-        return json_encode($passenger);
+        // return json_encode($passenger);
+        return response()->json([
+            'passenger'=>$passenger,
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -47,7 +51,10 @@ class PassengerController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -70,6 +77,11 @@ class PassengerController extends Controller
     public function show($id)
     {
         //
+        $passenger=Passenger::where('pasID',$id)->first();
+        // return json_encode($passenger);
+        return response()->json([
+            'passenger'=>$passenger,
+        ]);
     }
 
     /**
@@ -81,7 +93,10 @@ class PassengerController extends Controller
     public function edit($id)
     {
         $passenger=Passenger::where('pasID',$id)->first();
-        return json_encode($passenger);
+        // return json_encode($passenger);
+        return response()->json([
+            'passenger'=>$passenger,
+        ]);
     }
 
     /**
@@ -115,7 +130,11 @@ class PassengerController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($passenger,$resp);
+        //  return json_encode($passenger,$resp);
+         return response()->json([
+            'passenger'=>$passenger,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -140,6 +159,10 @@ class PassengerController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($passenger,$resp);
+        //  return json_encode($passenger,$resp);
+         return response()->json([
+            'passenger'=>$passenger,
+            'message'=>$resp
+        ]);
     }
 }

@@ -26,8 +26,8 @@ use App\Http\Controllers\Admin\{
 
 Route::get('/', function () {
     return view('welcome');
-    // $insert=DB::table('airplane_tb')->insert([
-    //     "aircraft_type"=>'1',
+    // $insert=DB::table('airplane')->insert([
+    //     "aircraft_type"=>'2',
     //     "manufacturer"=>'Lim works',
     //     "model"=>'A30',  
     //  ]);

@@ -18,7 +18,10 @@ class EmployeeController extends Controller
     {
         //
         $employee=Employee::all();
-        return json_encode($employee);
+        // return json_encode($employee);
+        return response()->json([
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -48,7 +51,10 @@ class EmployeeController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -71,6 +77,11 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
+        $employee=Employee::where('empnum',$id)->first();
+        // return json_encode($employee);
+        return response()->json([
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -82,7 +93,10 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee=Employee::where('empnum',$id)->first();
-        return json_encode($employee);
+        // return json_encode($employee);
+        return response()->json([
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -117,7 +131,11 @@ class EmployeeController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($employee,$resp);
+        //  return json_encode($employee,$resp);
+        return response()->json([
+            'employee'=>$employee,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -142,6 +160,10 @@ class EmployeeController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($employee,$resp);
+        //  return json_encode($employee,$resp);
+        return response()->json([
+            'employee'=>$employee,
+            'message'=>$resp
+        ]);
     }
 }

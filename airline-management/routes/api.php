@@ -28,11 +28,39 @@ use App\Http\Controllers\Admin\{
 
 
 // Airplane Route
+    Route::resource('/airplane', AirplaneController::class);
+// Route::get('/airplane/',[AirplaneController::class,'index']);
+// Route::post('/airplane/create',[AirplaneController::class,'create']);
 
-Route::post('/airplane/create',[AirplaneController::class,'create']);
-Route::get('/airplane/',[AirplaneController::class,'index']);
+// AirplaneType Route
+    Route::resource('/airplanetype', AirplaneTypeController::class);
+
+
+// AirplaneType Route
+    Route::resource('/crew', CrewController::class);
+
+
+// AirplaneType Route
+    Route::resource('/employee', EmployeeController::class);
+
 // Flight Route
-Route::get('/flight/',[FlightController::class,'index']);
+// Route::get('/flight/',[FlightController::class,'index']);
+     Route::resource('/flight', FlightController::class); 
+
+
+// AirplaneType Route
+    Route::resource('/passenger', PassengerController::class);
+
+
+// AirplaneType Route
+    Route::resource('/rating', RatingController::class);
+
+
+// AirplaneType Route
+    Route::resource('/schedule', ScheduleController::class);
+
+
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

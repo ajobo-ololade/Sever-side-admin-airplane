@@ -18,7 +18,10 @@ class RatingController extends Controller
     {
         //
         $rating=Rating::all();
-        return json_encode($rating);
+        // return json_encode($rating);
+        return response()->json([
+            'rating'=>$rating
+        ]);
     }
 
     /**
@@ -44,7 +47,10 @@ class RatingController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -67,6 +73,11 @@ class RatingController extends Controller
     public function show($id)
     {
         //
+        $rating=Rating::where('ratno',$id)->first();
+        // return json_encode($rating);
+        return response()->json([
+            'rating'=>$rating
+        ]);
     }
 
     /**
@@ -78,7 +89,10 @@ class RatingController extends Controller
     public function edit($id)
     {
         $rating=Rating::where('ratno',$id)->first();
-        return json_encode($rating);
+        // return json_encode($rating);
+        return response()->json([
+            'rating'=>$rating
+        ]);
     }
 
     /**
@@ -109,7 +123,11 @@ class RatingController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($rating,$resp);
+        //  return json_encode($rating,$resp);
+        return response()->json([
+            'rating'=>$rating,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -134,6 +152,10 @@ class RatingController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($rating,$resp);
+        //  return json_encode($rating,$resp);
+        return response()->json([
+            'rating'=>$rating,
+            'message'=>$resp
+        ]);
     }
 }

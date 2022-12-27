@@ -18,7 +18,10 @@ class FlightController extends Controller
     {
         //
         $flight=Flight::all();
-        return json_encode($flight);
+        // return json_encode($flight);
+        return response()->json([
+            'flight'=>$flight
+        ]);
     }
 
     /**
@@ -45,7 +48,10 @@ class FlightController extends Controller
                  $resp['success']=false;
             }
 
-        return json_encode($resp);
+        // return json_encode($resp);
+        return response()->json([
+            'message'=>$resp
+        ]);
     }
 
     /**
@@ -68,6 +74,11 @@ class FlightController extends Controller
     public function show($id)
     {
         //
+        $flight=Flight::where('flightnum',$id)->first();
+        // return json_encode($flight);
+        return response()->json([
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -79,7 +90,10 @@ class FlightController extends Controller
     public function edit($id)
     {
         $flight=Flight::where('flightnum',$id)->first();
-        return json_encode($flight);
+        // return json_encode($flight);
+        return response()->json([
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -111,7 +125,11 @@ class FlightController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($flight,$resp);
+        //  return json_encode($flight,$resp);
+        return response()->json([
+            'employee'=>$employee,
+            'message'=>$resp
+        ]);
         ;
     }
 
@@ -136,6 +154,10 @@ class FlightController extends Controller
               $resp['success']=false;
          }
          
-         return json_encode($flight,$resp);
+        //  return json_encode($flight,$resp);
+        return response()->json([
+            'employee'=>$employee,
+            'message'=>$resp
+        ]);
     }
 }
