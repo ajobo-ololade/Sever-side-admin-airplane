@@ -32,10 +32,22 @@ class CrewController extends Controller
     public function create(Request $request)
     {
         //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('crew')->insert([
-            "empnum"=>'1',
-            "scheduleid"=>'1',
-            "role"=>'pilot',  
+            "empnum"=>$request->empnum,
+            "scheduleid"=>$request->scheduleid,
+            "role"=>$request->role,  
          ]);
            $resp=[];
           if ($insert) 
@@ -52,17 +64,6 @@ class CrewController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

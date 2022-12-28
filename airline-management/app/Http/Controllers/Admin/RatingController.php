@@ -32,9 +32,21 @@ class RatingController extends Controller
     public function create(Request $request)
     {
         //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('rating')->insert([
-            "name"=>'Lim works',  
-            "aircraft_type"=>'1',
+            "name"=>$request->name,  
+            "aircraft_type"=>$request->aircraft_type,
          ]);
            $resp=[];
           if ($insert) 
@@ -51,17 +63,6 @@ class RatingController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

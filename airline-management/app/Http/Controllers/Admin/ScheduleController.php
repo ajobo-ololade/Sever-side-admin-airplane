@@ -31,14 +31,26 @@ class ScheduleController extends Controller
     public function create(Request $request)
     {
         //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('schedule')->insert([
-            "flightnum"=>'1',
-            "arr_time"=>'22',
-            "dep_time"=>'22',  
-            "arr"=>'22',  
-            "des"=>'22',  
-            "airplaneid"=>'2',  
-            "capacity"=>'A30',  
+            "flightnum"=>$request->flightnum,
+            "arr_time"=>$request->arr_time,
+            "dep_time"=>$request->dep_time,  
+            "arr"=>$request->arr,  
+            "des"=>$request->des,  
+            "airplaneid"=>$request->airplaneid,  
+            "capacity"=>$request->capacity,  
          ]);
            $resp=[];
           if ($insert) 
@@ -55,17 +67,6 @@ class ScheduleController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

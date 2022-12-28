@@ -33,12 +33,24 @@ class PassengerController extends Controller
     public function create(Request $request)
     {
         //
+       
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('passenger')->insert([
-            "surname"=>'NNN',
-            "othername"=>'Lim works',
-            "address"=>'A30',  
-            "phone"=>'A30',  
-            "schedulenum"=>'1',  
+            "surname"=>$request->surname,
+            "othername"=>$request->othername,
+            "address"=>$request->address,  
+            "phone"=>$request->phone,  
+            "schedulenum"=>$request->schedulenum,  
          ]);
            $resp=[];
           if ($insert) 
@@ -55,17 +67,6 @@ class PassengerController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

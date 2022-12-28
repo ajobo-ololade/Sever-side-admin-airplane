@@ -32,10 +32,21 @@ class AirplaneController extends Controller
     public function create(Request $request)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('airplane')->insert([
-            "aircraft_type"=>'1',
-            "manufacturer"=>'Lim works',
-            "model"=>'A30',  
+            "aircraft_type"=>$request->aircraft_type,
+            "manufacturer"=>$request->manufacturer,
+            "model"=>$request->model,  
          ]);
            $resp=[];
           if ($insert) 
@@ -52,17 +63,6 @@ class AirplaneController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

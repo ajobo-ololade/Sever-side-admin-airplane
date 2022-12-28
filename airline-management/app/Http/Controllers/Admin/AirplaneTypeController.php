@@ -32,8 +32,20 @@ class AirplaneTypeController extends Controller
     public function create(Request $request)
     {
         //
+      
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('airplane_type')->insert([
-            "name"=>'A30',  
+            "name"=>$request->name,  
          ]);
            $resp=[];
           if ($insert) 
@@ -50,17 +62,6 @@ class AirplaneTypeController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

@@ -32,10 +32,22 @@ class FlightController extends Controller
     public function create(Request $request)
     {
         //
+   
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('flight')->insert([
-            "flightdate"=>'1',
-            "origin"=>'Lim works',
-            "destination"=>'A30',  
+            "flightdate"=>$request->flightdate,
+            "origin"=>$request->origim,
+            "destination"=>$request->destination,  
          ]);
            $resp=[];
           if ($insert) 
@@ -52,17 +64,6 @@ class FlightController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

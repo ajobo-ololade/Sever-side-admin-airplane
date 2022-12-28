@@ -29,8 +29,8 @@ use App\Http\Controllers\Admin\{
 
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
-    
-    Route::group(['middleware' => ['jwt.verify']], function () { 
+
+    // Route::group(['middleware' => ['jwt.verify']], function () { 
 
 // User Route
 
@@ -70,7 +70,7 @@ use App\Http\Controllers\Admin\{
     Route::resource('/schedule', ScheduleController::class);
 
 
-});
+// });
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

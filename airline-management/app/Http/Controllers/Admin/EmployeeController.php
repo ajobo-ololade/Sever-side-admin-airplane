@@ -32,13 +32,25 @@ class EmployeeController extends Controller
     public function create(Request $request)
     {
         //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $insert=DB::table('employee')->insert([
-            "surname"=>'AAA',
-            "name"=>'Lim works',
-            "address"=>'A30',  
-            "phone"=>'A30',  
-            "salary"=>'30000',  
-            "ratingid"=>'1',  
+            "surname"=>$request->surname,
+            "name"=>$request->name,
+            "address"=>$request->address,  
+            "phone"=>$request->phone,  
+            "salary"=>$request->salary,  
+            "ratingid"=>$request->ratingid,  
          ]);
            $resp=[];
           if ($insert) 
@@ -55,17 +67,6 @@ class EmployeeController extends Controller
         return response()->json([
             'message'=>$resp
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
