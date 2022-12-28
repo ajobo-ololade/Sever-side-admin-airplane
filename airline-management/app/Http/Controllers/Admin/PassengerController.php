@@ -21,7 +21,6 @@ class PassengerController extends Controller
         // return json_encode($passenger);
         return response()->json([
             'passenger'=>$passenger,
-            'message'=>$resp
         ]);
     }
 
