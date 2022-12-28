@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     AirplaneController,
     AirplaneTypeController,
+    AuthController,
     CrewController,
     EmployeeController,
     FlightController,
@@ -26,6 +27,15 @@ use App\Http\Controllers\Admin\{
 
 // ADMIN ROUTES
 
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    
+    Route::group(['middleware' => ['jwt.verify']], function () { 
+
+// User Route
+
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('getUser', [AuthController::class, 'getUser']);
 
 // Airplane Route
     Route::resource('/airplane', AirplaneController::class);
@@ -60,7 +70,7 @@ use App\Http\Controllers\Admin\{
     Route::resource('/schedule', ScheduleController::class);
 
 
-
+});
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
