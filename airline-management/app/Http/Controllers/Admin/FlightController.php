@@ -46,7 +46,7 @@ class FlightController extends Controller
         //
         $insert=DB::table('flight')->insert([
             "flightdate"=>$request->flightdate,
-            "origin"=>$request->origim,
+            "origin"=>$request->origin,
             "destination"=>$request->destination,  
          ]);
            $resp=[];
@@ -128,7 +128,7 @@ class FlightController extends Controller
          
         //  return json_encode($flight,$resp);
         return response()->json([
-            'employee'=>$employee,
+            'flight'=>$flight,
             'message'=>$resp
         ]);
         ;
@@ -157,7 +157,7 @@ class FlightController extends Controller
          
         //  return json_encode($flight,$resp);
         return response()->json([
-            'employee'=>$employee,
+            'flight'=>$flight,
             'message'=>$resp
         ]);
     }
