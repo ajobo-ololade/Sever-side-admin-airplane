@@ -29,14 +29,27 @@ class AuthController extends Controller
             'user_name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
-            // 'c_password' => 'required|same:password',
-            // 'role_id' => 'required|numeric',
         ]);
-
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        // .catch((error) =>(this.errors.push(error)))
+        if ($validator->fails()) 
+        return response()->json([
+            'success' => false,
+            'message' => 'Error occured',
+            'data' => $validator->errors()
+        ], );
         $input = $request->all();
-        if (User::where('email', $input['email'])->first()) return $this->sendError('User with this email already exist.', $validator->errors());
-        if (User::where('user_name', $input['user_name'])->first()) return $this->sendError('User with this username already exist.', $validator->errors());
+        if (User::where('email', $input['email'])->first())
+        return response()->json([
+            'success' => false,
+            'message' => 'Email already exist',
+            'data' => $validator->errors()
+        ], );
+        if (User::where('user_name', $input['user_name'])->first()) 
+        return response()->json([
+            'success' => false,
+            'message' => 'Username already exist',
+            'data' => $validator->errors()
+        ], );
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         return response()->json([

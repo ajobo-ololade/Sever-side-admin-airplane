@@ -58,8 +58,6 @@ class AirplaneController extends Controller
             {
                  $resp['success']=false;
             }
-
-        // return json_encode($resp);
         return response()->json([
             'message'=>$resp
         ]);
@@ -75,7 +73,6 @@ class AirplaneController extends Controller
     {
         //
         $airplane=Airplane::where('numser',$id)->first();
-        // return json_encode($airplane);
         return response()->json([
             'airplane'=>$airplane
         ]);
@@ -90,7 +87,6 @@ class AirplaneController extends Controller
     public function edit($id)
     {
         $airplane=Airplane::where('numser',$id)->first();
-        // return json_encode($airplane);
         return response()->json([
             'airplane'=>$airplane
         ]);
