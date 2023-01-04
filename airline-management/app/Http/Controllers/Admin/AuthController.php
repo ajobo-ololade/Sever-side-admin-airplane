@@ -77,10 +77,14 @@ class AuthController extends Controller
             return response()->json(['error' => $validator->messages()], 200);
         }
         //Request is validated -> create token
+
+        $token=JWTAuth::attempt($credentials);
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
+
+            if (!$token) {
                 return response()->json([
                     'success' => false,
+                    'token'=>$token,
                     'message' => 'Login credentials are invalid.',
                 ], 400);
             }
@@ -91,11 +95,14 @@ class AuthController extends Controller
                 'message' => 'Could not create token.',
             ], 500);
         }
-        //Token created, return with success response and jwt token
-        return $this->sendResponse([
-            'success' => true,
-            'token' => $token,
-        ], 'User login successfully.');;
+        return response()->json([
+            'status' => 'success',
+            'user' => $credentials,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ],'User login successfully'
+        ]);
     }
 
     public function logout(Request $request)
