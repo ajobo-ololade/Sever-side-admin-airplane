@@ -56,6 +56,8 @@ use App\Http\Controllers\Admin\{
 // Flight Route
 // Route::get('/flight/',[FlightController::class,'index']);
      Route::resource('/flight', FlightController::class); 
+     Route::get('/flight/getSchedule/{id}',[FlightController::class,'get_schedule']);
+     Route::get('/flight/getCrew/{id}',[FlightController::class,'get_crew']);
 
 
 // AirplaneType Route

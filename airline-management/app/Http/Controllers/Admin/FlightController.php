@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Flight;
 use Illuminate\Support\Facades\DB;
+use App\Models\Flight;
+use App\Models\Schedule;
+use App\Models\Crew;
 
 class FlightController extends Controller
 {
@@ -160,5 +162,41 @@ class FlightController extends Controller
             'flight'=>$flight,
             'message'=>$resp
         ]);
+    }
+    public function get_schedule($id){
+        if($check=Schedule::where('flightnum',$id)->exists()){
+            $checks=Schedule::where('flightnum',$id)->get();
+                
+                return response()->json([
+                    'schedule'=>$checks,
+                    'message'=>'Schedule found!'
+                ]);
+             
+            }
+        
+        else{
+            return response()->json([
+                'message'=>'Schedule not found!'
+            ]);
+        }
+    }
+    public function get_crew($id){
+        if($check=Crew::where('scheduleid',$id)->exists()){
+            $checks=Crew::join('employee','employee.empnum','=','crew.empnum', )
+                        ->where('scheduleid',$id)
+                        ->get();
+                
+                return response()->json([
+                    'crew'=>$checks,
+                    'message'=>'Crew found!'
+                ]);
+             
+            }
+        
+        else{
+            return response()->json([
+                'message'=>'Crew not found!'
+            ]);
+        }
     }
 }

@@ -10,7 +10,7 @@ class AirplaneType extends Model
     use HasFactory;
     protected $table="airplane_type";
 
-    protected $primaryKey="type_id";
+    protected $primaryKey="typeid";
 
 
     protected $fillable = [

@@ -140,7 +140,7 @@ class AirplaneTypeController extends Controller
     public function destroy($id)
     {
         //
-        $airplanetype=AirplaneType::where('type_id',$id)->delete();
+        $airplanetype=AirplaneType::where('typeid',$id)->delete();
         $resp=[];
         if ($airplanetype) 
         { 
